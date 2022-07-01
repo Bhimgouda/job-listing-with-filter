@@ -153,4 +153,8 @@
 
 jobData = JSON.parse(jobData);
 
+const skill = document.querySelector('.skill');
+
+skill.textContent = 'CSS';
+
 
