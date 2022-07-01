@@ -1,0 +1,60 @@
+@import url(./normalize.css);
+
+/* Basic Rules */
+
+
+*,*::before,*::after{
+    box-sizing: border-box;
+}
+
+
+
+
+/* Typography */
+
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+:root{
+    --color-Desaturated-Dark-Cyan: hsl(180, 29%, 50%);
+    --color-Light-Grayish-Cyan-Background: hsl(180, 52%, 96%);
+    --color-Dark-Grayish-Cyan: hsl(180, 8%, 52%);
+    --color-Very-Dark-Grayish-Cyan: hsl(180, 14%, 20%);
+    --color-Light-Grayish-Cyan-Filter-Tablets: hsl(180, 31%, 95%);
+}
+
+
+
+
+/* Badges green */
+
+.badge{
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: black;
+    color: white;
+    border-radius: 9999px;
+    padding: 0.3rem 1rem;
+    cursor: pointer;
+    font-size: 1.3rem;
+}
+
+.badge--green{
+    background-color: var(--color-Dark-Grayish-Cyan);
+}
+
+.role-badge{
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    border-radius: 4px;
+    background-color: var(--color-Light-Grayish-Cyan-Background);
+    color: var(--color-Dark-Grayish-Cyan);
+}
