@@ -158,12 +158,13 @@ const jobBadges = document.querySelectorAll('.job-badge');
 const selectedArea = document.querySelector('.selected-badges');
 const jobSearch = document.querySelector('.job-search');
 const jobListing = document.querySelector('.job-listing');
-const clearFilterButton = document.querySelector('#clear-filters')
+const clearFilterButton = document.querySelector('#clear-filters');
+
 
 /* Selecting Dummy job items */
 
 const dummyJob = document.querySelector('.job')
-let companyLogo = document.querySelector('.job__company-logo');
+let companyLogo = document.querySelector('.job__company-logo img');
 let company = document.querySelector('.job__company-name');
 let position = document.querySelector('.job__role');
 let postedAt = document.querySelector('.was-listed');
@@ -173,6 +174,7 @@ let newJobBadge = document.querySelector('.new-badge');
 let featuredJobBadge = document.querySelector('.featured-badge');
 let dummyJobBadges = document.querySelector('.job__badges');
 
+let searchFilterList = []; /* This will always hold the selected filters
 
 /* Onload with Given job Data */
 
@@ -182,16 +184,17 @@ window.addEventListener('load',()=>{
   jobData.forEach((job,index)=>{
     newJob = document.createElement('div');
     newJob.classList.add('job');
+    newJob.id = `job${job.id}`
 
 
     /* Making changes to dummy job according to job data */
-    companyLogo.innerHTML = `<object data="${job.logo}" type="image/svg+xml"></object>`;
+    companyLogo.src = `${job.logo}`;
     company.textContent = `${job.company}`;
     position.textContent = `${job.position}`;
     postedAt.textContent = `${job.postedAt}`;
     contract.textContent = `${job.contract}`;
     jobLocation.textContent = `${job.location}`;
-
+    
 
 
     /* Checking Featured and New Jobs */
@@ -214,6 +217,7 @@ window.addEventListener('load',()=>{
     /* Adding Job Badges */
 
     dummyJobBadges.innerHTML = ``;
+    dummyJobBadges.id = `job-badges${job.id}`
     dummyJobBadges.innerHTML += `<span class="job-badge">${job.role}</span>`
     if (job.tools){
       job.tools.forEach(tool=>{
@@ -232,11 +236,13 @@ window.addEventListener('load',()=>{
 
 
   jobListing.appendChild(newJob);
+  
   })
 })
 
 
-let searchFilterList = [];
+
+/* Adding a filter from page */
 
   jobListing.addEventListener('click', (e)=>{
     if (e.target.classList.contains('job-badge')){
@@ -259,7 +265,7 @@ let searchFilterList = [];
         selectedArea.appendChild(newBadge);
       }
     }
-    console.log(searchFilterList)
+    searchFilter(searchFilterList);
   })
 
 
@@ -270,6 +276,12 @@ clearFilterButton.addEventListener('click',()=>{
     selectedArea.innerHTML = ``;
     jobSearch.classList.add('job-search--hidden');
     searchFilterList = [];
+    
+    /* for clearing all the filter and showing all the job listings available */
+    const allListedJobs = document.querySelectorAll('.job');
+    allListedJobs.forEach(listedJob=>{
+      listedJob.classList.remove('job--hidden');
+    })
 })
 
 
@@ -288,7 +300,46 @@ selectedArea.addEventListener('click',(e)=>{
   selectedArea.childNodes.forEach(badge=>{
     searchFilterList.push(badge.textContent.trim());
   });
+  const allListedJobs = document.querySelectorAll('.job');
+    allListedJobs.forEach(listedJob=>{
+      listedJob.classList.remove('job--hidden');
+    })
+    searchFilter(searchFilterList);
+    if (searchFilterList.length<1) {
+      jobSearch.classList.add('job-search--hidden');
+    }
 })
+
+
+
+
+
+/* THE SEARCH FILTERING PART */
+
+
+
+
+
+function searchFilter(filterBadges){
+  const allListedjobBadges = document.querySelectorAll('.job__badges');
+  const allListedJobs = document.querySelectorAll('.job');
+  allListedjobBadges.forEach(listedJobBadge=>{
+    let badges = [];
+    listedJobBadge.childNodes.forEach(badge=>{
+      badges.push(badge.textContent);
+    })
+    filterBadges.forEach(filterBadge=>{
+      if (!badges.includes(filterBadge)){
+        badgeId = listedJobBadge.id.match(/\d+/)[0];
+        console.log(badgeId)
+        allListedJobs.forEach(listedJob=>{
+          if (listedJob.id.includes(badgeId)) listedJob.classList.add('job--hidden');
+        })
+      }
+    })
+  })
+}
+
 
 
 

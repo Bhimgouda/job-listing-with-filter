@@ -84,7 +84,7 @@ body{
 
 /* Job display */
 
-.job__company-logo object{
+.job__company-logo img{
     transform: scale(0.5);
 }
 
@@ -99,7 +99,7 @@ body{
         position: static;
     }
 
-    .job__company-logo object{
+    .job__company-logo img{
         transform: scale(0.7);
     }
 
@@ -302,5 +302,9 @@ body{
 
 .remove-icon:hover{
     background-color: var(--color-Very-Dark-Grayish-Cyan);
+}
+
+.job-listing .job--hidden{
+    display: none;
 }
 
