@@ -12,6 +12,43 @@
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
+    <header class="page-header">
+      <div class="job-search job-search--hidden">
+        <div class="selected-badges"></div>
+        <span id="clear-filters">clear</span>
+      </div>
+    </header>
+    <div class="job-listing">
+      <div class="job">
+        <div class="info-container">
+          <span class="job__company-logo">
+            <object data="./images/photosnap.svg" type="image/svg+xml"></object>
+          </span>
+          <div class="job__description">
+            <section class="job__company-info">
+              <span class="job__company-name">Photosnap</span>
+              <span class="company-badge featured-badge">featured</span>
+              <span class="company-badge badge--green new-badge">new!</span>
+            </section>
+            <p class="job__role">Senior Frontend Developer</p>
+            <ul class="job__details">
+              <li class="was-listed">1d ago</li>
+              <li class="job__duration">Full Time</li>
+              <li class="job__location">USA only</li>
+            </ul>
+          </div>
+        </div>
+        <div class="job__badges">
+          <span class="job-badge">html</span>
+          <span class="job-badge">junior</span>
+          <span class="job-badge">Frontend</span>
+          <span class="job-badge">html</span>
+          <span class="job-badge">junior</span>
+          <span class="job-badge">Frontend</span>
+        </div>
+      </div>
+    </div>
+
     <script src="./app.js"></script>
   </body>
 </html>
